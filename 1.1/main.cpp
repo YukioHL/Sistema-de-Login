@@ -4,32 +4,45 @@
 
 using namespace std;
 
-struct data{
-    int idade;
-    string usuario;
-    string senha;
+class dados{
+    private:
+        int idade;
+        string usuario;
+        string senha;
+    public:
+        dados(int x, string y, string z){
+            idade = x;
+            usuario = y;
+            senha = z;
+        }
+        bool verifyUser(int x, string y, string z){
+            if(x == idade && y == usuario && z == senha){
+                return true;
+            }else{
+                return false;
+            } 
+        }
 };
 
 // Inicio do Código
 int main()
 {
-    struct data loginPadrao;
-    struct data login;
-    loginPadrao.idade = 21;
-    loginPadrao.usuario = "Arthur Yukio";
-    loginPadrao.senha = "harbor";
-
+    int idade = 21;
+    string usuario = "Arthur Yukio";
+    string senha = "harbor";
+    dados login(idade, usuario, senha);
     while(1){
         cout << "Insira a idade do admin: ";
-        cin >> login.idade;
+        cin >> idade;
         cin.ignore (80,'\n');               // Descarta um input do buffer se ele tem tamanho > 80 ou '\n'; int 
         cout << "Insira seu nome: ";
-        getline(cin,login.usuario);
+        getline(cin,usuario);
         cout << "Insira a senha: ";
-        getline(cin,login.senha);
+        getline(cin,senha);
 
+        dados login(idade, usuario, senha);
 
-        if(login.idade == loginPadrao.idade && login.usuario == loginPadrao.usuario && login.senha == loginPadrao.senha){
+        if(login.verifyUser(idade, usuario, senha)){
             cout << "Acesso concedido" << endl;
             
         }
